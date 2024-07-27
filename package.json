@@ -1,0 +1,62 @@
+{
+  "name": "sales-app-study-hyi",
+  "version": "1.0.0",
+  "private": true,
+  "description": "React Native App Study Project",
+  "repository": "https://github.com/seoulauction/sales-app-study-hyi.git",
+  "license": "MIT",
+  "author": "henry hong <hyi8656@gmail.com>",
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "ios": "expo run:ios",
+    "android": "expo run:android",
+    "web": "expo start --web",
+    "eas": "eas",
+    "expo": "expo"
+  },
+  "dependencies": {
+    "@expo/vector-icons": "^14.0.0",
+    "@react-native-firebase/app": "^20.1.0",
+    "@react-native-firebase/messaging": "^20.1.0",
+    "@react-native-google-signin/google-signin": "^12.2.1",
+    "@react-native/assets-registry": "^0.74.84",
+    "expo": "~51.0.17",
+    "expo-build-properties": "~0.12.3",
+    "expo-constants": "~16.0.2",
+    "expo-dev-client": "~4.0.19",
+    "expo-device": "~6.0.2",
+    "expo-font": "~12.0.7",
+    "expo-haptics": "~13.0.1",
+    "expo-linking": "^6.3.1",
+    "expo-location": "^17.0.1",
+    "expo-notifications": "~0.28.9",
+    "expo-router": "~3.5.16",
+    "expo-sqlite": "~14.0.3",
+    "expo-status-bar": "~1.12.1",
+    "firebase-admin": "^12.2.0",
+    "immer": "^10.1.1",
+    "nativewind": "^2.0.11",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "^0.74.2",
+    "react-native-gesture-handler": "~2.16.1",
+    "react-native-maps": "1.14.0",
+    "react-native-safe-area-context": "4.10.1",
+    "react-native-screens": "3.31.1",
+    "victory": "^37.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0",
+    "@types/node": "^20.11.22",
+    "@types/react": "~18.2.79",
+    "@types/react-dom": "~18.2.25",
+    "eas-cli": "^10.0.3",
+    "tailwindcss": "3.3.2",
+    "typescript": "~5.3.3"
+  },
+  "resolutions": {
+    "@expo/config-plugins": "~8.0.0",
+    "@expo/prebuild-config": "~7.0.0"
+  }
+}

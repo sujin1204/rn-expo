@@ -1,0 +1,14 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "jsx": "react",
+    "strict": true,
+    "baseUrl": ".",
+    "typeRoots": ["./types"],
+    "paths": {
+      "~/*": ["./src/*"],
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts", "types.d.ts"],
+  "exclude": ["node_modules"]
+}
