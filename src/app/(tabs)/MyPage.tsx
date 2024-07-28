@@ -33,6 +33,7 @@ const threeIconButtons: { icon: IconName; title: string }[] = [
     icon: 'newspaper-o',
   },
 ];
+
 const MyPage = () => {
   const renderItem = useCallback(
     ({ item, index }: { item: any; index: number }) => (
@@ -53,8 +54,7 @@ const MyPage = () => {
   return (
     <View className="flex-1  bg-white px-5 py-12">
       <View className="py-14">
-        <Text className="text-2xl font-semibold text-black">{`안녕하세요\n김서울님`}</Text>
-        <Text className="pt-4">seoul@seoulauction.com</Text>
+        <Text className="text-2xl font-semibold text-black">{`안녕하세요`}</Text>
       </View>
       <View className="px-4 flex-row justify-between mb-4">
         {threeIconButtons.map((btn, i) => (

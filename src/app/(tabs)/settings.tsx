@@ -4,7 +4,6 @@ import { View, Switch, Text, Pressable } from 'react-native';
 
 export default function SettingsTab() {
   const db = useSQLiteContext();
-  const [version, setVersion] = useState('');
   const [buttonList, setButtonList] = useState<any[]>([
     {
       title: '공지사항 알림',
@@ -17,21 +16,16 @@ export default function SettingsTab() {
     {
       title: '프로그램 정보',
       text: 'version 0.0.1',
-      button: false,
+      button: null,
     },
     {
       title: '마지막 접속시간',
       text: '7월 11일 10:11',
-      button: false,
-    },
-    {
-      title: 'SQLite Version',
-      text: version,
-      button: false,
+      button: null,
     },
     {
       title: '로그아웃',
-      button: false,
+      button: null,
     },
   ]);
 
@@ -44,19 +38,6 @@ export default function SettingsTab() {
     ]);
   };
 
-  const getSqliteVersion = async () => {
-    const result = await db.getFirstAsync<{ version: string }>('SELECT sqlite_version() as version');
-    return result?.version || '';
-  };
-
-  // DidMount - DB 버전 조회
-  useEffect(() => {
-    const didMount = async () => {
-      setVersion(await getSqliteVersion());
-    };
-    didMount();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   return (
     <View className="flex-1  bg-white px-5 py-6">
       {buttonList.map((item, index) => (
@@ -64,13 +45,13 @@ export default function SettingsTab() {
           <Pressable key={index}>
             <View className="flex-row justify-between">
               <Text className="text-base font-semibold text-black">{item.title}</Text>
-              {item.button && (
+              {item.button !== null && (
                 <Switch
                   trackColor={{ false: 'gray', true: '#1A6dff' }}
                   thumbColor={'#fff'}
                   ios_backgroundColor="#3e3e3e"
                   onValueChange={toggleSwitch(index)}
-                  value={buttonList[index].button}
+                  value={item.button}
                 />
               )}
               {item.text && <Text className="text-common-gray font-semibold">{item.text}</Text>}

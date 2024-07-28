@@ -24,8 +24,10 @@ export const getEurUsdCurrency = async () => {
   // 현재 시간이 평일 오전 11시 이전이면
   // 전 날의 환율을 조회
   if (currentTime < 12 && day > 0 && day < 6) {
-    const yesterDay: Date = new Date(today.setDate(today.getDate() - 1));
-    searchDate = searchDate.substring(0, 6) + yesterDay.getDate();
+    const yesterDay = new Date(today.setDate(today.getDate() - 1));
+    // 월요일(day 1) 오전 11시 이전이면 지난 금요일 환율 조회 필요
+    const theDayBefore: Date = day > 1 ? yesterDay : new Date(today.setDate(today.getDate() - 3));
+    searchDate = searchDate.substring(0, 6) + theDayBefore.getDate();
   }
   try {
     const result = await fetch(

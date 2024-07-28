@@ -15,7 +15,7 @@ export const getWeather = async () => {
       const { list } = json;
       const today = list?.[0];
       return {
-        temp: Math.floor(Number(parseFloat(today.main.temp) - 273.15)), // 온도
+        temp: Math.floor(Number(parseFloat(today.main.temp) - 273.15)), // 온도 : 캘빈 -> 섭씨 단위로 변환
         humidity: today.main.humidity, // 습도
         tempMax: Math.floor(Number(parseFloat(today.main['temp_max']) - 273.15)), // 최고 온도
         tempMin: Math.floor(Number(parseFloat(today.main['temp_min']) - 273.15)), // 최저 온도

@@ -6,6 +6,7 @@ import { migrateDbIfNeeded } from '~/lib/db';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { getWeather } from '~/lib/weather';
 import { getEurUsdCurrency } from '~/lib/currency';
+import * as Notifications from 'expo-notifications';
 
 const trigger = new Date(Date.now() + 60 * 60 * 1000);
 trigger.setMinutes(0);
@@ -20,21 +21,44 @@ type WeatherObj = {
   weatherIcon: keyof typeof Ionicons.glyphMap;
 };
 
-const scrollData = [
-  {
-    subTitle: 'TrekTrack',
-    title: `Let's Go!!`,
-    path: '/trektrack',
-  },
-  {
-    subTitle: 'TrekTrack',
-    title: '산책하러 가기',
-    path: '/trektrack/map',
-  },
-];
 export default function HomeTab() {
+  // 날씨 정보
   const [weather, setWeather] = useState<WeatherObj>();
+  // 환율정보
   const [currency, setCurrency] = useState<{ usd: number; eur: number }>();
+
+  // Event - 알림 전송
+  const sendNotification = async () => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: 'RNEXPO 알림',
+        body: '산책하러 가기',
+        data: {
+          url: `/trektrack`,
+        },
+        vibrate: [0, 200, 200, 200],
+      },
+      trigger: null, // 즉시 알림
+    });
+  };
+  
+  const scrollData = [
+    {
+      subTitle: 'TrekTrack',
+      title: `푸시 알림 전송`,
+      event: () => sendNotification(),
+    },
+    {
+      subTitle: 'TrekTrack',
+      title: `Let's Go!!`,
+      path: '/trektrack',
+    },
+    {
+      subTitle: 'TrekTrack',
+      title: '산책하러 가기',
+      path: '/trektrack/map',
+    },
+  ];
   useEffect(() => {
     const didMount = async () => {
       setWeather(await getWeather());
@@ -64,7 +88,19 @@ export default function HomeTab() {
         <View className="mb-5">
           <ScrollView horizontal>
             {scrollData.map((data, i) => (
-              <Pressable key={i} onPress={() => (data.path ? router.push(data.path) : {})}>
+              <Pressable
+                key={i}
+                onPress={() => {
+                  if (data.event) {
+                    data.event();
+                    return;
+                  }
+                  if (data.path) {
+                    router.push(data.path);
+                    return;
+                  }
+                }}
+              >
                 <View key={i} className="rounded-xl py-6 px-5 w-56 mr-3" style={{ borderColor: '#eee', borderWidth: 2 }}>
                   <Text className="text-gray-500 text-base font-bold">{data.subTitle}</Text>
                   <Text className="text-xl font-bold ">{data.title}</Text>
