@@ -16,7 +16,7 @@
     "ios": {
       "supportsTablet": true,
       "googleServicesFile": "./GoogleService-Info.plist",
-      "bundleIdentifier": "com.hyi.salesappstudyhyi",
+      "bundleIdentifier": "com.sujin.rnexpo",
       "entitlements": {
         "aps-environment": "production"
       }
@@ -28,7 +28,7 @@
         "backgroundColor": "#ffffff"
       },
       "permissions": ["CAMERA", "NOTIFICATIONS"],
-      "package": "com.hyi.salesappstudyhyi"
+      "package": "com.sujin.rnexpo"
     },
     "web": {
       "bundler": "metro",
@@ -75,7 +75,6 @@
         "projectId": "31c483c5-6605-433a-b0db-c71c8f796a0e"
       }
     },
-
     "owner": "sujinsujin"
   }
 }

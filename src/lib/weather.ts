@@ -1,6 +1,9 @@
-export const API_KEY = 'd9a01c220a122900a24c42836c2fcdf5';
+// export const API_KEY = 'd9a01c220a122900a24c42836c2fcdf5';
 import * as Location from 'expo-location';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import config from '~/config';
+
+const API_KEY = config.WEATHER_API_KEY;
 
 export const getWeather = async () => {
   const { coords } = await Location.getCurrentPositionAsync();

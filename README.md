@@ -26,7 +26,7 @@ Build details: https://expo.dev/accounts/sujinsujin/projects/rn-expo/builds/4d16
 아래 명령어를 실행하면 simulator 에 설치한 빌드파일을 실행할 수 있다.
 
 ```
-npx expo start -i 
+npx expo start -i
 ```
 
 ## Features
@@ -34,3 +34,4 @@ npx expo start -i
 - nativewind
 - expo-router
 - 날씨 api 연동 (api.openweathermap.org)
+- 한국수출입은행 환율 정보 연동

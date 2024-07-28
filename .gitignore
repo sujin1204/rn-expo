@@ -72,3 +72,4 @@ expo-env.d.ts
 *google-services.json
 *GoogleService-info.plist
 *service-account.json
+/src/config.ts

@@ -3,8 +3,9 @@ import { Text, ScrollView, Pressable, View, Image } from 'react-native';
 import { SQLiteProvider } from 'expo-sqlite/next';
 import { router } from 'expo-router';
 import { migrateDbIfNeeded } from '~/lib/db';
-import { getWeather } from '~/lib/weather';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { getWeather } from '~/lib/weather';
+import { getEurUsdCurrency } from '~/lib/currency';
 
 const trigger = new Date(Date.now() + 60 * 60 * 1000);
 trigger.setMinutes(0);
@@ -33,9 +34,11 @@ const scrollData = [
 ];
 export default function HomeTab() {
   const [weather, setWeather] = useState<WeatherObj>();
+  const [currency, setCurrency] = useState<{ usd: number; eur: number }>();
   useEffect(() => {
     const didMount = async () => {
       setWeather(await getWeather());
+      setCurrency(await getEurUsdCurrency());
     };
     didMount();
   }, []);
@@ -85,11 +88,12 @@ export default function HomeTab() {
             className="rounded-xl py-6 px-5"
             style={{ backgroundColor: '#ccc', borderColor: '#ccc', borderWidth: 2, width: '45%' }}
           >
-            <Text className="text-white text-sm font-bold mb-7">프리미엄 온라인 7/10</Text>
+            <Text className="text-white text-sm font-bold mb-7">환율 정보</Text>
             <Text className="text-white text-2xl font-bold ">
-              9360<Text className="text-sm"> 만원</Text>
+              {currency?.usd}
+              <Text className="text-sm"> 달러</Text>
             </Text>
-            <Text className="text-white text-sm font-bold ">낙찰율 29.63%</Text>
+            <Text className="text-white text-sm font-bold ">매매 기준율</Text>
           </View>
           <View className="rounded-xl py-6 px-5 bg-primary border-primary" style={{ borderWidth: 2, width: '45%' }}>
             <Text className="text-gray-600 text-sm font-bold color-white mb-7">{`오늘\n최고 기온`}</Text>
@@ -102,11 +106,12 @@ export default function HomeTab() {
             className="rounded-xl py-6 px-5"
             style={{ backgroundColor: '#ccc', borderColor: '#ccc', borderWidth: 2, width: '45%' }}
           >
-            <Text className="text-white text-sm font-bold mb-7">프리미엄 온라인 7/10</Text>
+            <Text className="text-white text-sm font-bold mb-7">환율 정보</Text>
             <Text className="text-white text-2xl font-bold ">
-              9360<Text className="text-sm"> 만원</Text>
+              {currency?.eur}
+              <Text className="text-sm"> 유로</Text>
             </Text>
-            <Text className="text-white text-sm font-bold ">낙찰율 29.63%</Text>
+            <Text className="text-white text-sm font-bold ">매매 기준율</Text>
           </View>
         </View>
       </ScrollView>
